@@ -1,10 +1,10 @@
 <template>
   <div>
     <the-header></the-header>
-    <button>Active goals</button>
-    <button>Manage goals</button>
-    <active-goals></active-goals>
-    <manage-goals></manage-goals>
+    <button @click="setSelectedComponent('active-goals')">Active goals</button>
+    <button @click="setSelectedComponent('manage-goals')">Manage goals</button>
+    <active-goals v-if="selectedComponent === 'active-goals' "></active-goals>
+    <manage-goals v-if="selectedComponent === 'manage-goals' "></manage-goals>
   </div>
 </template>
 
@@ -24,12 +24,18 @@ export default {
   },
   data() {
     return {
+      selectedComponent: 'active-goals',
       activeUser: {
         name: 'Maximilian Schwarzmüller',
         description: 'Site owner and admin',
         role: 'admin',
       },
     };
+  },
+  methods: {
+    setSelectedComponent(cmp){
+      this.selectedComponent = cmp;
+    }
   },
 };
 </script>
